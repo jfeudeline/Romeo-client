@@ -30,8 +30,10 @@ export async function getAccessToken() {
   return res.access_token as string;
 }
 
-export async function fetchAppelations(libelle: string, access_token: string) {
-  const url = `${process.env.ROMEO_API_ENDPOINT || ''}/predictionMetiers`;
+export async function fetchAppelations(libelle: string) {
+  const url = `${process.env.ROMEO_API_ENDPOINT}/predictionMetiers`;
+
+  const access_token = await getAccessToken();
 
   const options = {
     method: 'POST',

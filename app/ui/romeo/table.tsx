@@ -1,4 +1,4 @@
-import { getAccessToken, fetchAppelations } from '@/app/lib/api-requests';
+import { fetchAppelations } from '@/app/lib/api-requests';
 
 type ResAppellation = {
   libelleAppellation: string;
@@ -7,13 +7,9 @@ type ResAppellation = {
 };
 
 export default async function TableIntitulles({ query }: { query: string }) {
-  const token = await getAccessToken();
-
-  if (token === undefined) return <h2>Errreur</h2>;
-
   if (query === '') return <h2>Cherchez un métier !</h2>;
 
-  const appellations = await fetchAppelations(query, token);
+  const appellations = await fetchAppelations(query);
 
   return (
     <div className="mt-6 flow-root">
