@@ -1,9 +1,10 @@
 'use client';
 
 import {
-  UserGroupIcon,
+  NumberedListIcon,
+  QueueListIcon,
+  ReceiptRefundIcon,
   HomeIcon,
-  DocumentDuplicateIcon,
 } from '@heroicons/react/24/outline';
 import clsx from 'clsx';
 import { usePathname } from 'next/navigation';
@@ -11,13 +12,14 @@ import { usePathname } from 'next/navigation';
 // Map of links to display in the side navigation.
 // Depending on the size of the application, this would be stored in a database.
 const links = [
-  { name: 'Home', href: '/', icon: HomeIcon },
+  { name: 'Le ROME', href: '/', icon: HomeIcon },
   {
-    name: 'Romeo',
+    name: "Prédiction d'appelations",
     href: '/romeo',
-    icon: DocumentDuplicateIcon,
+    icon: NumberedListIcon,
   },
-  { name: 'Rome', href: '/rome', icon: UserGroupIcon },
+  { name: 'Retour qualité', href: '/feedback', icon: ReceiptRefundIcon },
+  { name: 'Suggesteur', href: '/suggester', icon: QueueListIcon },
 ];
 
 export default function NavLinks() {
