@@ -14,7 +14,7 @@ export async function getAccessToken() {
   const u = new URLSearchParams();
   u.append('client_id', client_id);
   u.append('client_secret', client_secret);
-  u.append('scope', 'api_romeov2');
+  u.append('scope', 'api_romeov2 api_rome-fiches-metiersv1 nomenclatureRome');
   u.append('grant_type', 'client_credentials');
 
   const response = await fetch(`${url}?realm=partenaire`, {
@@ -31,7 +31,7 @@ export async function getAccessToken() {
 }
 
 export async function fetchAppelations(libelle: string) {
-  const url = `${process.env.ROMEO_API_ENDPOINT}/predictionMetiers`;
+  const url = `${process.env.FT_API_ENDPOINT}/romeo/v2/predictionMetiers`;
 
   const access_token = await getAccessToken();
 
@@ -52,13 +52,36 @@ export async function fetchAppelations(libelle: string) {
     }),
   };
 
-  //console.log(options);
-
   try {
     const response = await fetch(url, options);
     const data = await response.json();
-    //console.log(data);
     return data;
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+export async function getFichesMetier() {
+  const url = `${process.env.FT_API_ENDPOINT}/rome-fiches-metiers/v1/fiches-rome/fiche-metier`;
+
+  const access_token = await getAccessToken();
+
+  const options = {
+    method: 'GET',
+    headers: {
+      Authorization: `Bearer ${access_token}`,
+      'Content-Type': 'application/json; charset=utf-8',
+      Accept: 'application/json',
+    },
+  };
+
+  try {
+    const response = await fetch(url, options);
+    console.log(response);
+    const data = await response.json();
+
+    if (response.ok) return data;
+    throw 'erreur';
   } catch (error) {
     console.error(error);
   }
