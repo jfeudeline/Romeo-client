@@ -8,7 +8,7 @@ export const metadata: Metadata = {
     template: '%s | Romeo Client',
     default: 'Romeo Client',
   },
-  description: 'Aplication cliente des API Rome et Romeo de France Travail ',
+  description: 'Application cliente des API Rome et Romeo de France Travail ',
 };
 
 export default function RootLayout({

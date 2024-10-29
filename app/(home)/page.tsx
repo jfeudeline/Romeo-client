@@ -1,5 +1,6 @@
 import { lusitana } from '@/app/ui/fonts';
-import TableFiches from '@/app/ui/home/table';
+// import TableFiches from '@/app/ui/home/table';
+import { TableFichesDT } from '@/app/ui/home/table';
 import { getFichesMetier } from '../lib/api-requests';
 
 
@@ -15,6 +16,7 @@ export default async function Home() {
 
   const fichesMetier = await getFichesMetier();
 
+  
   const fiches = fichesMetier.map((fiche: FicheMetier) => {
     return {
       code: fiche.metier.code,
@@ -22,6 +24,9 @@ export default async function Home() {
     }
 
   })
+  
+
+
   
   return (
     <main className="flex min-h-screen flex-col p-6">
@@ -31,7 +36,7 @@ export default async function Home() {
       <h2 className={`${lusitana.className} mb-4 text-l md:text-2xl`}>
         Les fiches métier
       </h2>
-      <TableFiches fichesMetier={fiches} />
+      <TableFichesDT fichesMetier={fiches} />
     </main>
   );
 }

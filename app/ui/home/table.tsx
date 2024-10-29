@@ -1,10 +1,43 @@
+"use client"
+
+import { AgGridReact } from "ag-grid-react";
+import "ag-grid-community/styles/ag-grid.css";
+import "ag-grid-community/styles/ag-theme-quartz.css";
+import { useState } from "react";
+ 
+
+
+
 interface FicheMetier {
     code: string,
     libelle: string,
   };
 
 
-export default async function TableFiches({fichesMetier} : { fichesMetier: FicheMetier[]}) {
+
+
+
+export function TableFichesDT({fichesMetier} : {fichesMetier: FicheMetier[]}) {
+
+  console.log(fichesMetier)
+
+  const [rowData, setRowData] = useState(fichesMetier);
+  
+  // Column Definitions: Defines the columns to be displayed.
+  const [colDefs, setColDefs] = useState([
+    { field: "code" },
+    { field: "libelle" },
+  ]);
+
+
+  return (
+    <div className="ag-theme-quartz" style={{height: 500}}>
+      <AgGridReact rowData={rowData} columnDefs={colDefs} />
+    </div>
+);
+}
+
+export default function TableFiches({fichesMetier} : { fichesMetier: FicheMetier[]}) {
 
 
   return (
