@@ -3,14 +3,19 @@ import TableFiches from '@/app/ui/home/table';
 import { getFichesMetier } from '../lib/api-requests';
 
 
-
+interface FicheMetier {
+ code: string,
+ metier: {
+  code:string,
+  libelle:string,
+ }
+}
 
 export default async function Home() {
 
   const fichesMetier = await getFichesMetier();
-  console.log(fichesMetier)
 
-  const fiches = fichesMetier.map(fiche => {
+  const fiches = fichesMetier.map((fiche: FicheMetier) => {
     return {
       code: fiche.metier.code,
       libelle: fiche.metier.libelle,
