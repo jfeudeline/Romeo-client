@@ -1,22 +1,20 @@
 import { getFichesMetier } from '@/app/lib/api-requests';
 
-type FicheEmploi = {
-  code: string;
-  metier: {
-    code: string;
-    libelle: string;
+interface FicheMetier {
+    code: string,
+    libelle: string,
   };
-};
 
-export default async function TableFiches() {
-  const fiches = await getFichesMetier();
+
+export default async function TableFiches({fichesMetier} : { fichesMetier: FicheMetier[]}) {
+
 
   return (
     <div className="mt-6 flow-root">
       <div className="inline-block min-w-full align-middle">
         <div className="rounded-lg bg-gray-50 p-2 md:pt-0">
           <div className="md:hidden">
-            {fiches.map((fiche: FicheEmploi) => (
+            {fichesMetier.map((fiche: FicheMetier) => (
               <div
                 key={fiche.code}
                 className="mb-2 w-full rounded-md bg-white p-4"
@@ -24,10 +22,10 @@ export default async function TableFiches() {
                 <div className="flex items-center justify-between border-b pb-4">
                   <div>
                     <div className="mb-2 flex items-center">
-                      <p>{fiche.metier.code}</p>
+                      <p>{fiche.code}</p>
                     </div>
                     <p className="text-sm text-gray-500">
-                      {fiche.metier.libelle}
+                      {fiche.libelle}
                     </p>
                   </div>
                 </div>
@@ -46,18 +44,18 @@ export default async function TableFiches() {
               </tr>
             </thead>
             <tbody className="bg-white">
-              {fiches.map((fiche: FicheEmploi) => (
+              {fichesMetier.map((fiche: FicheMetier) => (
                 <tr
                   key={fiche.code}
                   className="w-full border-b py-3 text-sm last-of-type:border-none [&:first-child>td:first-child]:rounded-tl-lg [&:first-child>td:last-child]:rounded-tr-lg [&:last-child>td:first-child]:rounded-bl-lg [&:last-child>td:last-child]:rounded-br-lg"
                 >
                   <td className="whitespace-nowrap py-3 pl-6 pr-3">
                     <div className="flex items-center gap-3">
-                      <p>{fiche.metier.code}</p>
+                      <p>{fiche.code}</p>
                     </div>
                   </td>
                   <td className="whitespace-nowrap px-3 py-3">
-                    {fiche.metier.libelle}
+                    {fiche.libelle}
                   </td>
                 </tr>
               ))}
