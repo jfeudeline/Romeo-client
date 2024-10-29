@@ -1,5 +1,3 @@
-import { getFichesMetier } from '@/app/lib/api-requests';
-
 interface FicheMetier {
     code: string,
     libelle: string,
