@@ -32,7 +32,7 @@ export function TableFichesDT({fichesMetier} : {fichesMetier: FicheMetier[]}) {
 
   return (
     <div className="ag-theme-quartz" style={{height: 500}}>
-      <AgGridReact rowData={rowData} columnDefs={colDefs} />
+      <AgGridReact rowData={rowData}  />
     </div>
 );
 }
