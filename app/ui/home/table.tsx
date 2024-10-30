@@ -20,7 +20,7 @@ export function TableFichesDT({
   const [rowData] = useState(fichesMetier);
 
   // Column Definitions: Defines the columns to be displayed.
-  const [colDefs] = useState([{ field: 'code' }, { field: 'libelle' }]);
+  const [colDefs]: any[] = useState([{ field: 'code' }, { field: 'libelle' }]);
 
   return (
     <div className="ag-theme-quartz" style={{ height: 500 }}>
