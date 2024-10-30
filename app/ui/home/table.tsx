@@ -1,45 +1,39 @@
-"use client"
+'use client';
 
-import { AgGridReact } from "ag-grid-react";
-import "ag-grid-community/styles/ag-grid.css";
-import "ag-grid-community/styles/ag-theme-quartz.css";
-import { useState } from "react";
- 
-
-
+import { AgGridReact } from 'ag-grid-react';
+import 'ag-grid-community/styles/ag-grid.css';
+import 'ag-grid-community/styles/ag-theme-quartz.css';
+import { useState } from 'react';
 
 interface FicheMetier {
-    code: string,
-    libelle: string,
-  };
-
-
-
-
-
-export function TableFichesDT({fichesMetier} : {fichesMetier: FicheMetier[]}) {
-
-  console.log(fichesMetier)
-
-  const [rowData, setRowData] = useState(fichesMetier);
-  
-  // Column Definitions: Defines the columns to be displayed.
-  const [colDefs, setColDefs] = useState([
-    { field: "code" },
-    { field: "libelle" },
-  ]);
-
-
-  return (
-    <div className="ag-theme-quartz" style={{height: 500}}>
-      <AgGridReact rowData={rowData}  />
-    </div>
-);
+  code: string;
+  libelle: string;
 }
 
-export default function TableFiches({fichesMetier} : { fichesMetier: FicheMetier[]}) {
+export function TableFichesDT({
+  fichesMetier,
+}: {
+  fichesMetier: FicheMetier[];
+}) {
+  console.log(fichesMetier);
 
+  const [rowData] = useState(fichesMetier);
 
+  // Column Definitions: Defines the columns to be displayed.
+  const [colDefs] = useState([{ field: 'code' }, { field: 'libelle' }]);
+
+  return (
+    <div className="ag-theme-quartz" style={{ height: 500 }}>
+      <AgGridReact rowData={rowData} columnDefs={colDefs} pagination={true} />
+    </div>
+  );
+}
+
+export default function TableFiches({
+  fichesMetier,
+}: {
+  fichesMetier: FicheMetier[];
+}) {
   return (
     <div className="mt-6 flow-root">
       <div className="inline-block min-w-full align-middle">
@@ -55,9 +49,7 @@ export default function TableFiches({fichesMetier} : { fichesMetier: FicheMetier
                     <div className="mb-2 flex items-center">
                       <p>{fiche.code}</p>
                     </div>
-                    <p className="text-sm text-gray-500">
-                      {fiche.libelle}
-                    </p>
+                    <p className="text-sm text-gray-500">{fiche.libelle}</p>
                   </div>
                 </div>
               </div>
